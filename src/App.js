@@ -117,77 +117,86 @@ const App = () => {
 
   return (
     <main className="main-body">
-      <div className="container">
-        <h1 className="main-heading">SMILES Checker</h1>
-        <h2 className="heading">
-          Enter a SMILES string to check Lipinski, Veber, Ghose, and Egan rules.
-        </h2>
-        <div className="input-container">
-          <input
-            type="text"
-            value={smiles}
-            onChange={(e) => setSmiles(e.target.value)}
-            placeholder="Enter SMILES string (e.g., C1CCCCC1)"
-          />
-          <button onClick={handleSubmit} disabled={!rdkit}>
-            {rdkit ? "Check Rules" : "Loading RDKit ..."}
-          </button>
-          {error && <p className="error">{error}</p>}
-        </div>
-        {image && (
-          <div
-            className="image-container"
-            dangerouslySetInnerHTML={{ __html: image }}
-          />
-        )}
-        {results && (
-          <div className="card-container">
-            <h2 className="main-heading">SMILES Analysis</h2>
-            <div className="card-inner-container">
-              {Object.keys(results.passed).map((rule) => (
-                <div key={rule} className="card">
-                  <h3 className="card-heading">{`${rule.toUpperCase()} RULES`}</h3>
-                  <div className="rules-container">
-                    {results.passed[rule].length > 0 ? (
-                      <div className="rule-item">
-                        <p
-                          className="passed"
-                          style={{ marginBottom: "0.5rem" }}
-                        >
-                          Passed:
-                        </p>
-                        {results.passed[rule].map((item, index) => (
-                          <p key={index} className="rule-status">
-                            {item}
-                          </p>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="failed">No Passed Rules</p>
-                    )}
-
-                    {results.failed[rule].length > 0 && (
-                      <div className="rule-item">
-                        <p
-                          className="failed"
-                          style={{ marginBottom: "0.5rem" }}
-                        >
-                          Failed:
-                        </p>
-                        {results.failed[rule].map((item, index) => (
-                          <p key={index} className="rule-status">
-                            {item}
-                          </p>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+      <section className="main-section">
+        <div className="container">
+          <h1 className="main-heading">SMILES Checker</h1>
+          <h2 className="heading">
+            Enter a SMILES string to check Lipinski, Veber, Ghose, and Egan
+            rules.
+          </h2>
+          <div className="input-container">
+            <input
+              type="text"
+              value={smiles}
+              onChange={(e) => setSmiles(e.target.value)}
+              placeholder="Enter SMILES string (e.g., C1CCCCC1)"
+            />
+            <button onClick={handleSubmit} disabled={!rdkit}>
+              {rdkit ? "Check Rules" : "Loading RDKit ..."}
+            </button>
+            {error && <p className="error">{error}</p>}
           </div>
-        )}
-      </div>
+          {image && (
+            <div
+              className="image-container"
+              dangerouslySetInnerHTML={{ __html: image }}
+            />
+          )}
+          {results && (
+            <div className="card-container">
+              <h2 className="main-heading">SMILES Analysis</h2>
+              <div className="card-inner-container">
+                {Object.keys(results.passed).map((rule) => (
+                  <div key={rule} className="card">
+                    <h3 className="card-heading">{`${rule.toUpperCase()} RULES`}</h3>
+                    <div className="rules-container">
+                      {results.passed[rule].length > 0 ? (
+                        <div className="rule-item">
+                          <p
+                            className="passed"
+                            style={{ marginBottom: "0.5rem" }}
+                          >
+                            Passed:
+                          </p>
+                          {results.passed[rule].map((item, index) => (
+                            <p key={index} className="rule-status">
+                              {item}
+                            </p>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="failed">No Passed Rules</p>
+                      )}
+
+                      {results.failed[rule].length > 0 && (
+                        <div className="rule-item">
+                          <p
+                            className="failed"
+                            style={{ marginBottom: "0.5rem" }}
+                          >
+                            Failed:
+                          </p>
+                          {results.failed[rule].map((item, index) => (
+                            <p key={index} className="rule-status">
+                              {item}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+      <footer className="footer-container">
+        <h2 className="footer-heading">powered by RDKit-JS</h2>
+        <a href="http://charan-cvs.dev/" target="blank" className="footer-txt">
+          @CVS
+        </a>
+      </footer>
     </main>
   );
 };
