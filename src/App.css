@@ -136,7 +136,7 @@ button:hover {
   text-align: center;
   margin: 1rem 0;
   letter-spacing: 0.03rem;
-  color: #333;
+  color: #3674b5;
 }
 
 .rules-container {
@@ -164,12 +164,12 @@ button:hover {
 }
 
 .passed {
-  color: #27ae60;
+  color: #59cf8a;
   font-weight: 600;
 }
 
 .failed {
-  color: #e74c3c;
+  color: #a94034;
   font-weight: 600;
 }
 

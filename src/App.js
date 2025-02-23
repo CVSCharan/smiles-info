@@ -154,7 +154,7 @@ const App = () => {
                           className="passed"
                           style={{ marginBottom: "0.5rem" }}
                         >
-                          ✅ Passed:
+                          Passed:
                         </p>
                         {results.passed[rule].map((item, index) => (
                           <p key={index} className="rule-status">
@@ -163,7 +163,7 @@ const App = () => {
                         ))}
                       </div>
                     ) : (
-                      <p className="failed">❌ No Passed Rules</p>
+                      <p className="failed">No Passed Rules</p>
                     )}
 
                     {results.failed[rule].length > 0 && (
@@ -172,7 +172,7 @@ const App = () => {
                           className="failed"
                           style={{ marginBottom: "0.5rem" }}
                         >
-                          ❌ Failed:
+                          Failed:
                         </p>
                         {results.failed[rule].map((item, index) => (
                           <p key={index} className="rule-status">
