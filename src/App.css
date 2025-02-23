@@ -1,38 +1,156 @@
-.App {
+.main-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #c4d9ff, #c5baff);
+}
+
+/* Container */
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: 80rem;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Headings */
+h1 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  letter-spacing: 0.03rem;
+}
+
+h2 {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  letter-spacing: 0.03rem;
+}
+
+h3 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  letter-spacing: 0.03rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  letter-spacing: 0.03rem;
+  text-align: left;
+  margin: 0.5rem 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  width: 600px;
+  margin: 0.5rem;
+}
+
+/* Input Box */
+input {
+  width: 500px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #c4d9ff;
+  border-radius: 4px;
+  font-size: 1rem;
+  letter-spacing: 0.03rem;
+}
+
+/* Button */
+button {
+  background: linear-gradient(90deg, #c4d7ff, #f0c1e1);
+  color: #222;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+  letter-spacing: 0.03rem;
+}
+
+button:hover {
+  background: linear-gradient(270deg, #c4d7ff, #f0c1e1);
+}
+
+/* Error Message */
+.error {
+  color: rgb(255, 49, 49);
+  font-weight: bold;
+  margin: 1rem 0;
+  line-height: 1.6;
+  letter-spacing: 0.03rem;
+}
+
+/* Img Container */
+.image-container {
+  margin: 0.5rem 0;
+}
+
+/* Card Container */
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-inner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.card {
+  background: #e1eafc;
   color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 10px 0;
+  width: 380px;
+  height: 120px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+/* Passed & Failed Sections */
+.passed {
+  color: #2ecc71;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.failed {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Final Conclusion Card */
+.conclusion {
+  background: linear-gradient(90deg, #16a085, #27ae60);
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  font-size: 18px;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
 }
