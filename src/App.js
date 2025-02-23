@@ -7,6 +7,7 @@ const App = () => {
   const [results, setResults] = useState(null);
   const [rdkit, setRdkit] = useState(null);
   const [error, setError] = useState("");
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     const loadRDKit = async () => {
@@ -105,10 +106,16 @@ const App = () => {
       return;
     }
 
+    setLoader(true); // Show loader
+
     try {
       const mol = rdkit.get_mol(smiles);
       setImage(mol.get_svg());
-      const results = checkRules(mol);
+      setTimeout(() => {
+        const results = checkRules(mol);
+        setResults(results);
+        setLoader(false); // Hide loader after 2 seconds
+      }, 2000);
       setResults(results);
     } catch (error) {
       setError("Invalid SMILES format. Please try again.");
@@ -136,58 +143,66 @@ const App = () => {
             </button>
             {error && <p className="error">{error}</p>}
           </div>
-          {image && (
-            <div
-              className="image-container"
-              dangerouslySetInnerHTML={{ __html: image }}
-            />
-          )}
-          {results && (
-            <div className="card-container">
-              <h2 className="main-heading">SMILES Analysis</h2>
-              <div className="card-inner-container">
-                {Object.keys(results.passed).map((rule) => (
-                  <div key={rule} className="card">
-                    <h3 className="card-heading">{`${rule.toUpperCase()} RULES`}</h3>
-                    <div className="rules-container">
-                      {results.passed[rule].length > 0 ? (
-                        <div className="rule-item">
-                          <p
-                            className="passed"
-                            style={{ marginBottom: "0.5rem" }}
-                          >
-                            Passed:
-                          </p>
-                          {results.passed[rule].map((item, index) => (
-                            <p key={index} className="rule-status">
-                              {item}
-                            </p>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="failed">No Passed Rules</p>
-                      )}
-
-                      {results.failed[rule].length > 0 && (
-                        <div className="rule-item">
-                          <p
-                            className="failed"
-                            style={{ marginBottom: "0.5rem" }}
-                          >
-                            Failed:
-                          </p>
-                          {results.failed[rule].map((item, index) => (
-                            <p key={index} className="rule-status">
-                              {item}
-                            </p>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {loader ? (
+            <div className="loader-container">
+              <span className="loader"></span>
             </div>
+          ) : (
+            <>
+              {image && (
+                <div
+                  className="image-container"
+                  dangerouslySetInnerHTML={{ __html: image }}
+                />
+              )}
+              {results && (
+                <div className="card-container">
+                  <h2 className="main-heading">SMILES Analysis</h2>
+                  <div className="card-inner-container">
+                    {Object.keys(results.passed).map((rule) => (
+                      <div key={rule} className="card">
+                        <h3 className="card-heading">{`${rule.toUpperCase()} RULES`}</h3>
+                        <div className="rules-container">
+                          {results.passed[rule].length > 0 ? (
+                            <div className="rule-item">
+                              <p
+                                className="passed"
+                                style={{ marginBottom: "0.5rem" }}
+                              >
+                                Passed:
+                              </p>
+                              {results.passed[rule].map((item, index) => (
+                                <p key={index} className="rule-status">
+                                  {item}
+                                </p>
+                              ))}
+                            </div>
+                          ) : (
+                            <p className="failed">No Passed Rules</p>
+                          )}
+
+                          {results.failed[rule].length > 0 && (
+                            <div className="rule-item">
+                              <p
+                                className="failed"
+                                style={{ marginBottom: "0.5rem" }}
+                              >
+                                Failed:
+                              </p>
+                              {results.failed[rule].map((item, index) => (
+                                <p key={index} className="rule-status">
+                                  {item}
+                                </p>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
