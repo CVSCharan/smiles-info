@@ -2,6 +2,12 @@
   box-sizing: border-box !important;
   margin: 0;
   padding: 0;
-  font-family: "Arial", sans-serif;
+  /* font-family: "Arial", sans-serif; */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: black;
+}
+
+/* Apply Helvetica Neue globally */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
