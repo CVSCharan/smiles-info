@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 const App = () => {
   const [smiles, setSmiles] = useState("");
@@ -122,22 +123,35 @@ const App = () => {
     }
   };
 
+  const handleClearSearch = () => {
+    setSmiles("");
+  };
+
   return (
     <main className="main-body">
       <section className="main-section">
         <div className="container">
           <h1 className="main-heading">SMILES Checker</h1>
           <h2 className="heading">
-            Enter a SMILES string to check Lipinski, Veber, Ghose, and Egan
-            rules.
+            Input a SMILES string to analyze its compliance with Lipinski,
+            Veber, Ghose, and Egan rules.
           </h2>
           <div className="input-container">
-            <input
-              type="text"
-              value={smiles}
-              onChange={(e) => setSmiles(e.target.value)}
-              placeholder="Enter SMILES string (e.g., C1CCCCC1)"
-            />
+            <div className="input-inner-container">
+              <input
+                type="text"
+                value={smiles}
+                onChange={(e) => setSmiles(e.target.value)}
+                placeholder="Enter SMILES string (e.g., C1CCCCC1)"
+              />
+              {smiles && (
+                <CancelOutlinedIcon
+                  onClick={handleClearSearch}
+                  className="clear-button"
+                  aria-label="clear search"
+                />
+              )}
+            </div>
             <button onClick={handleSubmit} disabled={!rdkit}>
               {rdkit ? "Check Rules" : "Loading RDKit ..."}
             </button>
@@ -208,9 +222,12 @@ const App = () => {
       </section>
       <footer className="footer-container">
         <h2 className="footer-heading">powered by RDKit-JS</h2>
-        <a href="http://charan-cvs.dev/" target="blank" className="footer-txt">
-          @CVS
-        </a>
+        <h2 className="footer-txt">
+          All Rights Reserved -{" "}
+          <a href="http://charan-cvs.dev/" target="blank">
+            @CVS
+          </a>
+        </h2>
       </footer>
     </main>
   );
